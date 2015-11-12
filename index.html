@@ -3,21 +3,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="author" content="Alex Ramos">
-	   	<meta name="author" content="Josh Hall">
-	    <meta name="author" content="Eric Berner">
-	    <meta name="author" content="Sukhman Tiwana">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="author" content="Alex Ramos">
+		<meta name="author" content="Josh Hall">
+		<meta name="author" content="Eric Berner">
+		<meta name="author" content="Sukhman Tiwana">
 
 		<title>Sign Up</title>
 
-		  <!-- bootstrap -->
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-		  <link rel="stylesheet" href="css/main.css"/>
+		<!-- bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/main.css"/>
 
-		  <!-- include libraries -->
-		  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-		  <script src="js/app.js"></script>
+		<!-- include libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script src="js/app.js"></script>
 
 	</head>
 
@@ -27,24 +27,26 @@
 				<form name="userForm" ng-submit="submit()" novalidate>
 					<h1>Sign Up</h1>
 					<p>Our service is fun and awesome, but you must be 13 years old to join</p>
+					
 					<!-- EMAIL -->
-			        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched}">
-			            <label>Email</label>
-			            <input type="email" name="email" placeholder="Email Address" class="form-control" ng-model="user.email" required>
-			            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched" class="help-block">This is not a valid email address.</p>
-			        </div>
-		    		<!-- First Name -->
-		    		<div class="name">
-		        		<label>First Name</label>
-		        		<input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
-		        	</div>
+					<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched}">
+						<label>Email</label>
+						<input type="email" name="email" placeholder="Email Address" class="form-control" ng-model="user.email" required>
+						<p ng-show="userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched" class="help-block">This is not a valid email address.</p>
+					</div>
 
-	        		<!-- Last Name -->
-			        <div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched }">
-			            <label>Last Name</label>
-			            <input type="text" name="lastName" placeholder="Your Last Name" class="form-control" ng-model="user.lastName" required>
-			            <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched" class="help-block">We need to know your last name</p>
-			        </div>
+					<!-- First Name -->
+					<div class="name">
+						<label>First Name</label>
+						<input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
+					</div>
+
+					<!-- Last Name -->
+					<div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched }">
+						<label>Last Name</label>
+						<input type="text" name="lastName" placeholder="Your Last Name" class="form-control" ng-model="user.lastName" required>
+						<p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched" class="help-block">We need to know your last name</p>
+					</div>
 
 					<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
 				</form>
