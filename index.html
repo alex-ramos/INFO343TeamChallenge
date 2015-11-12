@@ -24,31 +24,31 @@
 	<body>
 		<div ng-app="validation" ng-controller="controller">
 			<div class="container">
-			  <form name="userForm" ng-submit="submit()" novalidate>
-				<h1>Sign Up</h1>
-				<p>Our service is fun and awesome, but you must be 13 years old to join</p>
-				<!-- EMAIL -->
-		        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched}">
-		            <label>Email</label>
-		            <input type="email" name="email" placeholder="Email Address" class="form-control" ng-model="user.email" required>
-		            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched" class="help-block">This is not a valid email address.</p>
-		        </div>
-	    		<!-- First Name -->
-	    		<div class="name">
-	        		<label>First Name</label>
-	        		<input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
-	        	</div>
+				<form name="userForm" ng-submit="submit()" novalidate>
+					<h1>Sign Up</h1>
+					<p>Our service is fun and awesome, but you must be 13 years old to join</p>
+					<!-- EMAIL -->
+			        <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched}">
+			            <label>Email</label>
+			            <input type="email" name="email" placeholder="Email Address" class="form-control" ng-model="user.email" required>
+			            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched" class="help-block">This is not a valid email address.</p>
+			        </div>
+		    		<!-- First Name -->
+		    		<div class="name">
+		        		<label>First Name</label>
+		        		<input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
+		        	</div>
 
-        		<!-- Last Name -->
-		        <div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched }">
-		            <label>Last Name</label>
-		            <input type="text" name="lastName" placeholder="Your Last Name" class="form-control" ng-model="user.lastName" required>
-		            <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched" class="help-block">We need to know your last name</p>
-		        </div>
+	        		<!-- Last Name -->
+			        <div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched }">
+			            <label>Last Name</label>
+			            <input type="text" name="lastName" placeholder="Your Last Name" class="form-control" ng-model="user.lastName" required>
+			            <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched" class="help-block">We need to know your last name</p>
+			        </div>
 
-				<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+					<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
 				</form>
-			</div>
+			</div>	
 		</div>
 	</body>
 </html>
