@@ -17,40 +17,49 @@
 
 		<!-- include libraries -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+		<!-- load ngmessages -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+
 		<script src="js/app.js"></script>
 
 	</head>
 
-	<body>
-		<div ng-app="validation" ng-controller="controller">
-			<div class="container">
-				<form name="userForm" ng-submit="submit()" novalidate>
-					<h1>Sign Up</h1>
-					<p>Our service is fun and awesome, but you must be 13 years old to join</p>
+	<body  class="container" ng-app="validationApp" ng-controller="MainCtrl as main">
+		<form name="signForm" id="signUpForm" novalidate>
+			<h1>Sign Up</h1>
+			<p>Our service is fun and awesome, but you must be 13 years old to join</p>
 					
-					<!-- EMAIL -->
-					<div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched}">
-						<label>Email</label>
-						<input type="email" name="email" placeholder="Email Address" class="form-control" ng-model="user.email" required>
-						<p ng-show="userForm.email.$invalid && !userForm.email.$pristine && !userForm.email.$touched" class="help-block">This is not a valid email address.</p>
-					</div>
+			<!-- EMAIL -->
+			<!--The email field is required and must contain a valid email address, according to Angular's email validation rules (in other words, it has to be in the correct format but it doesn't have to be a real email address). If the email address is left blank after the user touches it, you form should show an appropriate error message. If it has a value but it's not a valid email address, you form should display a different appropriate error message.-->
+			<div class="form-group" ng-class="{ 'has-error': signForm.email.$touched && signForm.email.$invalid }">
+				<label>Email</label>
+				<input type="email" name="email" placeholder="Email Address" class="form-control" ng-model="main.email" required>
+				<div class="help-block" ng-messages="signForm.email.$error" ng-if="signForm.email.$touched">
+					<p ng-message="required">Your email address is required.</p>
+					<p ng-message="email">Your email address is invalid.</p>
+				</div>
+			</div>
 
-					<!-- First Name -->
-					<div class="name">
-						<label>First Name</label>
-						<input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
-					</div>
+			<!-- First Name -->
+			<!--The firstName field has no validations. It may remain blank (e.g., people with only one name, like Madonna or Prince)-->
+			<div class="name">
+				<label>First Name</label>
+				<input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
+			</div>
 
-					<!-- Last Name -->
-					<div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched }">
-						<label>Last Name</label>
-						<input type="text" name="lastName" placeholder="Your Last Name" class="form-control" ng-model="user.lastName" required>
-						<p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine && !userForm.lastName.$touched" class="help-block">We need to know your last name</p>
-					</div>
-
-					<button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
-				</form>
-			</div>	
-		</div>
+			<!-- Last Name -->
+			<!--The lastName field is required. If it is still empty after the user touches it, your code should display an appropriate error message.-->
+			<div class="form-group" ng-class="{ 'has-error': signForm.lastName.$touched}">
+				<label>Last Name</label>
+				<input type="lastName" name="lastName" placeholder="Last Name" class="form-control" ng-model="main.lastName" required>
+				<div class="help-block" ng-messages="signForm.lastName.$error" ng-if="signForm.lastName.$touched">
+					<p ng-message="required">Your last name is required.</p>
+				</div>
+			</div>
+			<!--The submit button (entitled "Sign Me Up!" in the screenshots above) must be disabled if any of the fields are not valid. It should be enabled only if all fields are valid.-->
+			<button type="reset" class="btn btn-primary" value="Reset">Reset</button>
+			<button type="submit" class="btn btn-primary" ng-click="submitForm(signForm.$valid)" ng-disabled="signForm.$invalid" id="submitButton" value="Submit">Sign Me Up!</button>
+		</form>
 	</body>
 </html>
