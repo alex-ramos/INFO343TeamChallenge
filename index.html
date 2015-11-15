@@ -57,6 +57,37 @@
 					<p ng-message="required">Your last name is required.</p>
 				</div>
 			</div>
+
+			<!-- Birthdate (MM/DD/YYYY) -->
+			<!-- Required, will fail if the date entered is less than 13 years ago -->
+			<div class="form-group" ng-class="{ 'has-error': signForm.birthdate.$touched}">
+				<label>Birthdate</label>
+				<input name="birthdate" placeholder="MM/DD/YYYY" class="form-control" ng-model="main.birthdate" ng-change="checkBirthDate()" required>
+				<div class="help-block" ng-messages="signForm.birthdate.$error" ng-if="signForm.birthdate.$touched">
+					<p ng-message="required">You must be at least 13 years old to sign up</p>
+				</div>
+			</div>
+
+
+			<!-- Password entries -->
+			<!-- Both required, will not validate if both passwords are not the same -->
+			<div class="form-group" ng-class="{ 'has-error': signForm.password.$touched}">
+				<label>Password</label>
+				<input type="password" name="password" placeholder="Password" class="form-control" ng-model="main.password" ng-change="confirmPassword()" required>
+				<div class="help-block" ng-messages="signForm.password.$error" ng-if="signForm.password.$touched">
+					<p ng-message="required">Please enter a password</p>
+				</div>
+			</div>
+
+			<div class="form-group" ng-class="{ 'has-error': signForm.cPassw.$touched}">
+				<label>Confirm Password</label>
+				<input type="password" name="cPassw" placeholder="Confirm Password" class="form-control" ng-model="main.cPassw" ng-change="confirmPassword()"  required>
+				<div class="help-block" ng-messages="signForm.cPassw.$error" ng-if="signForm.cPassw.$touched">
+					<p ng-message="required">Please confirm your password</p>
+				</div>
+			</div>
+
+
 			<!--The submit button (entitled "Sign Me Up!" in the screenshots above) must be disabled if any of the fields are not valid. It should be enabled only if all fields are valid.-->
 			<button type="reset" class="btn btn-primary" value="Reset">Reset</button>
 			<button type="submit" class="btn btn-primary" ng-click="submitForm(signForm.$valid)" ng-disabled="signForm.$invalid" id="submitButton" value="Submit">Sign Me Up!</button>
