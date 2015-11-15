@@ -31,13 +31,29 @@ describe('Sign up page', function() {
         expect(signUpForm.isPresent()).toEqual(true);
         expect(email.isPresent()).toEqual(true);
 
+        // test for a invalid email
+        email.sendKeys("example");
+        expect(email.getAttribute('class')).toMatch('ng-invalid-email');
+        email.clear().then(function() {
+            email.sendKeys(" ");
+            expect(email.getAttribute('class')).toMatch('ng-invalid-required');
+            email.clear().then(function () {
+                email.sendKeys("term@example.com");
+                expect(email.getAttribute('class')).toMatch('ng-valid-email');
+            });
+        });
+
     });
 
-    it('should have first and last name that is validate', function () {
+    it('should have last name that is validate', function () {
         expect(signUpForm.isPresent()).toEqual(true);
         expect(firstName.isPresent()).toEqual(true);
         expect(lastName.isPresent()).toEqual(true);
 
+        lastName.sendKeys(" ");
+        expect(lastName.getAttribute('class')).toMatch('ng-invalid-required');
+        lastName.sendKeys("Name");
+        expect(lastName.getAttribute('class')).toMatch('ng-valid');
     });
 
 });
