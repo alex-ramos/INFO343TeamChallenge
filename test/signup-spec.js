@@ -62,14 +62,24 @@ describe('Sign up page', function() {
     	expect(birthdate.isPresent()).toEqual(true);
 
     	birthdate.sendKeys("01/01/1990");
-    	expect(birthdate.getAttribute('class')).toMatch('ng-invalid-required');
+    	expect(birthdate.getAttribute('class')).toMatch('ng-valid');
+        birthdate.clear().then(function(){
+            birthdate.sendKeys("01/01/2100");
+            expect(birthdate.getAttribute('class')).toMatch('ng-invalid');
+        });
     });
-
 
     it('should make sure the password and its confirmation match', function(){
     	expect(password.isPresent()).toEqual(true);
     	expect(confirmPassword.isPresent()).toEqual(true);
 
-    })
+        password.sendKeys("password");
+        confirmPassword.sendKeys("password");
+        expect(password.getAttribute('class')).toMatch('ng-valid');
+        confirmPassword.clear().then(function(){
+            confirmPassword.sendKeys("notpassword");
+            expect(password.getAttribute('class')).toMatch('ng-invalid');
+        });
+    });
 
 });
