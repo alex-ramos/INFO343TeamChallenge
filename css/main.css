@@ -3,16 +3,41 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,300italic);
 
+
 body {
 	font-family: Lato, 'Helvetica Nue', Helvetica, sans-serif;
 	font-size: 16px;
 	font-weight:300;
-	background-color:#E9EAEE; 
+	background-image: url("../img/backgroundImage.jpg");
+	background-repeat: no-repeat;
+	font-color: rgb(77, 183, 136);
+
 }
 
 h1 {
 	font-family: Raleway, 'Helvetica Nue', Helvetica, sans-serif;
+	color: rgb(51, 47, 62);
+	
 }
+
 p {
 	font-color: white;
+	color: rgb(77, 183, 136);
 }
+
+.btn {
+	margin-right: 13px;
+	border-radius: 12px;
+}
+
+.btn-success {
+	background-color: rgb(128, 200, 181);
+}
+
+.container {
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+
+
