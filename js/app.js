@@ -20,16 +20,10 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     $scope.checkBirthDate = function(){
     	var bDate = Date.parse($scope.main.birthdate);
     	var oldDate = new Date();
-    	//var currentD = new Date();
     	oldDate.setFullYear(oldDate.getFullYear() - 13);
-    	//console.log(oldDate.toString());
-    	console.log(bDate.toString());
     	if(bDate < oldDate){
-    		console.log(true);
     		return true;
     	}else{
-
-	     	console.log(false);
 	     	return false;
 	    }
     };
@@ -41,30 +35,25 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     	var pwd1 = $scope.main.password;
     	var pwd2 = $scope.main.cPassw;
 
-    	console.log(pwd1);
-    	console.log(pwd2);
-
     	if(pwd1 === pwd2){
-    		console.log(true);
     		return true;
     	}
     	else{
-    		console.log(false);
     		return false;
     	}
     }
 
+    //Function to validate birthdate on Page
     $scope.checkFormBD = function(){
     	var valid = $scope.checkBirthDate();
     	$scope.signForm.birthdate.$setValidity("birthdate", valid);
-    	//console.log(valid);
     }
 
+    //Function to validate passwords
     $scope.checkFormPass = function(){
     	var valid = $scope.confirmPassword();
     	$scope.signForm.password.$setValidity("password", valid);
     	$scope.signForm.cPassw.$setValidity("cPassw", valid);
-    	console.log(valid);
     }
 
 }]);
