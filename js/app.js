@@ -28,7 +28,6 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
 	    }
     };
 
-
     //Checks both password fields and if they match each other
     //Returns true if match, false if different
     $scope.confirmPassword = function(){
@@ -43,18 +42,16 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     	}
     }
 
-    //Function to validate birthdate on Page
+    //Function to set the validation for the birthdate field
     $scope.checkFormBD = function(){
     	var valid = $scope.checkBirthDate();
     	$scope.signForm.birthdate.$setValidity("birthdate", valid);
     }
 
-    //Function to validate passwords
+    //Function to set the validation for the password fields
     $scope.checkFormPass = function(){
     	var valid = $scope.confirmPassword();
     	$scope.signForm.password.$setValidity("password", valid);
     	$scope.signForm.cPassw.$setValidity("cPassw", valid);
     }
-
 }]);
-

@@ -59,17 +59,17 @@
 			</div>
 
 			<!-- Birthdate (MM/DD/YYYY) -->
-			<!-- Required, will fail if the date entered is less than 13 years ago -->
+			<!-- Required, will not validate the date entered is less than 13 years ago -->
 			<div class="form-group" ng-class="{ 'has-error': signForm.birthdate.$touched && signForm.birthdate.$invalid}">
 				<label>Birthdate</label>
 				<input name="birthdate" placeholder="MM/DD/YYYY" class="form-control" ng-model="main.birthdate" ng-change="checkFormBD()" required>
 				<div class="help-block" ng-messages="signForm.birthdate.$error" ng-if="signForm.birthdate.$touched">
 					<p ng-message="required">Please enter a birthdate</p>
-					<p ng-message="invalid">You must be at least 13 years old to sign up</p>
-
+				</div>
+				<div class="help-block" ng-if="signForm.birthdate.$invalid && signForm.birthdate.$touched">
+					<p>You must be at least 13 years old to sign up</p>
 				</div>
 			</div>
-
 
 			<!-- Password entries -->
 			<!-- Both required, will not validate if both passwords are not the same -->
@@ -87,8 +87,10 @@
 				<div class="help-block" ng-messages="signForm.cPassw.$error" ng-if="signForm.cPassw.$touched">
 					<p ng-message="required">Please confirm your password</p>
 				</div>
+				<div class="help-block" ng-if="signForm.cPassw.$invalid && signForm.cPassw.$touched">
+					<p>Please make sure both of your passwords match.</p>
+				</div>
 			</div>
-
 
 			<!--The submit button (entitled "Sign Me Up!" in the screenshots above) must be disabled if any of the fields are not valid. It should be enabled only if all fields are valid.-->
 			<button type="reset" class="btn btn-primary" value="Reset">Reset</button>
