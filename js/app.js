@@ -10,7 +10,7 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     // function to submit the form after all validation has occurred            
     $scope.submitForm = function(isValid) {
     	// check to make sure the form is completely valid
-    	if(isValid && checkBirthDate) {
+    	if(isValid) {
     		alert("You have successfully submitted");
     	}
     };
@@ -26,8 +26,11 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     	console.log(bDate.toString());
     	if(bDate < oldDate){
     		console.log(true);
+    		return true;
     	}else{
+
 	     	console.log(false);
+	     	return false;
 	    }
     };
 
@@ -49,7 +52,19 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     		console.log(false);
     		return false;
     	}
-    	
+    }
+
+    $scope.checkFormBD = function(){
+    	var valid = $scope.checkBirthDate();
+    	$scope.signForm.birthdate.$setValidity("birthdate", valid);
+    	//console.log(valid);
+    }
+
+    $scope.checkFormPass = function(){
+    	var valid = $scope.confirmPassword();
+    	$scope.signForm.password.$setValidity("password", valid);
+    	$scope.signForm.cPassw.$setValidity("cPassw", valid);
+    	console.log(valid);
     }
 
 }]);
