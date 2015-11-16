@@ -20,20 +20,13 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     $scope.checkBirthDate = function(){
     	var bDate = Date.parse($scope.main.birthdate);
     	var oldDate = new Date();
-    	//var currentD = new Date();
     	oldDate.setFullYear(oldDate.getFullYear() - 13);
-    	//console.log(oldDate.toString());
-    	console.log(bDate.toString());
     	if(bDate < oldDate){
-    		console.log(true);
     		return true;
     	}else{
-
-	     	console.log(false);
 	     	return false;
 	    }
     };
-
 
     //Checks both password fields and if they match each other
     //Returns true if match, false if different
@@ -41,31 +34,24 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     	var pwd1 = $scope.main.password;
     	var pwd2 = $scope.main.cPassw;
 
-    	console.log(pwd1);
-    	console.log(pwd2);
-
     	if(pwd1 === pwd2){
-    		console.log(true);
     		return true;
     	}
     	else{
-    		console.log(false);
     		return false;
     	}
     }
 
+    //Function to set the validation for the birthdate field
     $scope.checkFormBD = function(){
     	var valid = $scope.checkBirthDate();
     	$scope.signForm.birthdate.$setValidity("birthdate", valid);
-    	//console.log(valid);
     }
 
+    //Function to set the validation for the password fields
     $scope.checkFormPass = function(){
     	var valid = $scope.confirmPassword();
     	$scope.signForm.password.$setValidity("password", valid);
     	$scope.signForm.cPassw.$setValidity("cPassw", valid);
-    	console.log(valid);
     }
-
 }]);
-
