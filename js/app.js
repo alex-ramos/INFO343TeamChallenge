@@ -53,5 +53,8 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     	var valid = $scope.confirmPassword();
     	$scope.signForm.password.$setValidity("password", valid);
     	$scope.signForm.cPassw.$setValidity("cPassw", valid);
+    $scope.reset = function(){
+    	$('input').val = 0;
+    };
     }
 }]);

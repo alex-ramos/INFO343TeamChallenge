@@ -93,7 +93,7 @@
 			</div>
 
 			<!--The submit button (entitled "Sign Me Up!" in the screenshots above) must be disabled if any of the fields are not valid. It should be enabled only if all fields are valid.-->
-			<button type="reset" class="btn btn-primary" value="Reset">Reset</button>
+			<button type="reset" class="btn btn-primary" value="Reset" ng-click="reset()">Reset</button>
 			<button type="submit" class="btn btn-primary" ng-click="submitForm(signForm.$valid)" ng-disabled="signForm.$invalid" id="submitButton" value="Submit">Sign Me Up!</button>
 		</form>
 	</body>
