@@ -15,4 +15,47 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     	}
     };
 
+    //Checks entered bithdate against date 13 years ago
+    //Returns true if birthday is valid, false if birthday is not
+    $scope.checkBirthDate = function(){
+    	var bDate = Date.parse($scope.main.birthdate);
+    	var oldDate = new Date();
+    	oldDate.setFullYear(oldDate.getFullYear() - 13);
+    	if(bDate < oldDate){
+    		return true;
+    	}else{
+	     	return false;
+	    }
+    };
+
+    //Checks both password fields and if they match each other
+    //Returns true if match, false if different
+    $scope.confirmPassword = function(){
+    	var pwd1 = $scope.main.password;
+    	var pwd2 = $scope.main.cPassw;
+
+    	if(pwd1 === pwd2){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    }
+
+    //Function to set the validation for the birthdate field
+    $scope.checkFormBD = function(){
+    	var valid = $scope.checkBirthDate();
+    	$scope.signForm.birthdate.$setValidity("birthdate", valid);
+    }
+
+    //Function to set the validation for the password fields
+    $scope.checkFormPass = function(){
+    	var valid = $scope.confirmPassword();
+    	$scope.signForm.password.$setValidity("password", valid);
+    	$scope.signForm.cPassw.$setValidity("cPassw", valid);
+    };
+    //resets all fields
+    $scope.reset = function(){
+    	$('input').val = 0;
+    };
 }]);
