@@ -10,6 +10,7 @@ describe('Sign up page', function() {
     var password = element(by.name("password"));
     var confirmPassword = element(by.name("cPassw"));
     var reset = element(by.id("reset"));
+    var alertMsg = element(by.id("alert"));
 
 	beforeEach(function() {
         // reload the page before each test
@@ -82,7 +83,7 @@ describe('Sign up page', function() {
         });
     });
 
-    it('should let you click the submit button if all fields are valid', function(){
+    it('should let you click the submit button if all fields are valid, and the alert message should be visible', function(){
 	firstName.sendKeys("First");
 	lastName.sendKeys("Name");
 	email.sendKeys("jhall38@uw.edu");
@@ -90,6 +91,8 @@ describe('Sign up page', function() {
 	password.sendKeys("pass");
 	confirmPassword.sendKeys("pass");
 	expect(submitButton.isEnabled()).toBe(true); //all fields should be valid after this test
+	submitButton.click();
+	expect(alertMsg.isDisplayed()).toBe(true);
     });
 
     it('should clear all fields when clear button is pressed', function(){

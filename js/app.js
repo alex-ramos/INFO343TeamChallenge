@@ -11,7 +11,7 @@ validation.controller('MainCtrl', ["$scope", function($scope) {
     $scope.submitForm = function(isValid) {
     	// check to make sure the form is completely valid
     	if(isValid) {
-    		alert("You have successfully submitted");
+    		$('#alert').css('visibility', 'visible');
     	}
     };
 

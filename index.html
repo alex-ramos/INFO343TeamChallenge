@@ -20,6 +20,8 @@
 
 		<!-- load ngmessages -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+		<!-- load JQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 		<script src="js/app.js"></script>
 
@@ -27,6 +29,9 @@
 	</head>
 
 	<body  class="container" ng-app="validationApp" ng-controller="MainCtrl as main">
+		<div id="alert" class="alert alert-success">
+		  <strong>Success!</strong>
+		</div>	  
 		<form name="signForm" id="signUpForm" novalidate>
 			<h1>Sign Up</h1>
 			<p>Our service is fun and awesome, but you must be 13 years old to join</p>

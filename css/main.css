@@ -39,5 +39,7 @@ p {
 	padding-right: 100px;
 }
 
-
+#alert {
+	visibility: hidden;
+}
 
