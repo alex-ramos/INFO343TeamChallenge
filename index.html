@@ -52,7 +52,7 @@
 
 			<!-- Last Name -->
 			<!--The lastName field is required. If it is still empty after the user touches it, your code should display an appropriate error message.-->
-			<div class="form-group" ng-class="{ 'has-error': signForm.lastName.$touched}">
+			<div class="form-group" ng-class="{ 'has-error': signForm.lastName.$touched && signForm.lastName.$invalid}">
 				<label>Last Name</label>
 				<input type="lastName" name="lastName" placeholder="Last Name" class="form-control" ng-model="main.lastName" required>
 				<div class="help-block" ng-messages="signForm.lastName.$error" ng-if="signForm.lastName.$touched">

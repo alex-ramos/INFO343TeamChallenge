@@ -24,9 +24,9 @@ describe('Sign up page', function() {
   	});
 
   	it('should have a a submit button', function () {
-        expect(signUpForm.isPresent()).toEqual(true);
-        expect(submitButton.isPresent()).toEqual(true);
-    });
+        	expect(signUpForm.isPresent()).toEqual(true);
+        	expect(submitButton.isPresent()).toEqual(true);
+    	});
 
   	// test for invalid email
   	it('should have an email that is validate', function () {
@@ -61,30 +61,39 @@ describe('Sign up page', function() {
     it('should not allow users under 13 to sign up', function(){
     	expect(signUpForm.isPresent()).toEqual(true);
     	expect(birthdate.isPresent()).toEqual(true);
+        birthdate.sendKeys("01/01/2100");
+        expect(birthdate.getAttribute('class')).toMatch('ng-invalid');
 
-    	birthdate.sendKeys("01/01/1990");
-    	expect(birthdate.getAttribute('class')).toMatch('ng-valid');
         birthdate.clear().then(function(){
-            birthdate.sendKeys("01/01/2100");
-            expect(birthdate.getAttribute('class')).toMatch('ng-invalid');
-        });
+    		birthdate.sendKeys("01/01/1990");
+    		expect(birthdate.getAttribute('class')).toMatch('ng-valid');
+	});
     });
 
     it('should make sure the password and its confirmation match', function(){
     	expect(password.isPresent()).toEqual(true);
     	expect(confirmPassword.isPresent()).toEqual(true);
-
-        password.sendKeys("password");
-        confirmPassword.sendKeys("password");
-        expect(password.getAttribute('class')).toMatch('ng-valid');
+        password.sendKeys("password"); 
+	confirmPassword.sendKeys("notpassword");
+        expect(password.getAttribute('class')).toMatch('ng-invalid');
         confirmPassword.clear().then(function(){
-            confirmPassword.sendKeys("notpassword");
-            expect(password.getAttribute('class')).toMatch('ng-invalid');
+		confirmPassword.sendKeys("password");
+        	expect(password.getAttribute('class')).toMatch('ng-valid');
         });
     });
 
+    it('should let you click the submit button if all fields are valid', function(){
+	firstName.sendKeys("First");
+	lastName.sendKeys("Name");
+	email.sendKeys("jhall38@uw.edu");
+	birthdate.sendKeys("12/10/94");
+	password.sendKeys("pass");
+	confirmPassword.sendKeys("pass");
+	expect(submitButton.isEnabled()).toBe(true); //all fields should be valid after this test
+    });
+
     it('should clear all fields when clear button is pressed', function(){
-    	expect(reset.isPresent()).toEqual(true);
+    	expect(reset.isPresent()).toBe(true);
 	reset.click();
 	expect(firstName.getAttribute("value")).toEqual(""); 
 	expect(lastName.getAttribute("value")).toEqual("");
@@ -93,5 +102,8 @@ describe('Sign up page', function() {
 	expect(birthdate.getAttribute("value")).toEqual("");
 	expect(email.getAttribute("value")).toEqual("");
     });
-
+    
+    it('should not let you click the submit button if fields are invalid', function(){
+	expect(submitButton.isEnabled()).toBe(false); //all fields should be valid after this test
+    });
 });
