@@ -9,6 +9,7 @@ describe('Sign up page', function() {
     var birthdate = element(by.name("birthdate"));
     var password = element(by.name("password"));
     var confirmPassword = element(by.name("cPassw"));
+    var reset = element(by.id("reset"));
 
 	beforeEach(function() {
         // reload the page before each test
@@ -80,6 +81,17 @@ describe('Sign up page', function() {
             confirmPassword.sendKeys("notpassword");
             expect(password.getAttribute('class')).toMatch('ng-invalid');
         });
+    });
+
+    it('should clear all fields when clear button is pressed', function(){
+    	expect(reset.isPresent()).toEqual(true);
+	reset.click();
+	expect(firstName.getAttribute("value")).toEqual(""); 
+	expect(lastName.getAttribute("value")).toEqual("");
+	expect(password.getAttribute("value")).toEqual("");
+	expect(confirmPassword.getAttribute("value")).toEqual("");
+	expect(birthdate.getAttribute("value")).toEqual("");
+	expect(email.getAttribute("value")).toEqual("");
     });
 
 });
